@@ -33,6 +33,7 @@
   },
   "homepage": "https://github.com/kschingiz/meteor-elastic-apm#readme",
   "dependencies": {
+    "@tdc/meteor-measured": "^1.0.0",
     "elastic-apm-node": "3.27.0",
     "fibers": "^4.0.3",
     "shimmer": "1.2.1"
