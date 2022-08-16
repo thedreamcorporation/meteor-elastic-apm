@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 Package.describe({
-  name: 'thedreamcorporation:meteor-elastic-apm',
+  name: '@tdc/meteor-elastic-apm',
   version: '1.0.0',
   // Brief, one-line summary of the package.
   summary: 'Performance monitoring for Meteor based on Elastic APM',
