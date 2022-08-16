@@ -1,13 +1,12 @@
 {
   "name": "@tdc/meteor-elastic-apm",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Performance Monitoring for Meteor based on Elastic APM",
   "main": "meteor-elastic-apm.js",
   "scripts": {
     "lint": "eslint ./",
     "test": "jest --coverage",
-    "report-coverage": "codecov",
-    "publish": "meteor npm i && npm prune --production && meteor publish && meteor npm i"
+    "report-coverage": "codecov"  
   },
   "repository": {
     "type": "git",
@@ -34,7 +33,7 @@
   "homepage": "https://github.com/thedreamcorporation/meteor-elastic-apm#readme",
   "dependencies": {
     "@tdc/meteor-measured": "^1.0.0",
-    "elastic-apm-node": "3.27.0",
+    "elastic-apm-node": "^3.27.0",
     "fibers": "^4.0.3",
     "shimmer": "1.2.1"
   }
