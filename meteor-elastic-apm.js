@@ -15,18 +15,12 @@ const instrumentDB = require('./instrumenting/db');
 const startMetrics = require('./metrics');
 
 const hackDB = require('./hacks');
-
-const [framework, version] = Meteor.release.split('@');
-
-Agent.setFramework({
-  name: framework,
-  version,
-  override: true
-});
+let Meteor;
 
 shimmer.wrap(Agent, 'start', function(startAgent) {
-  return function(...args) {
+  return function(meteor, ...args) {
     const config = args[0] || {};
+    Meteor = meteor;
 
     if (config.active !== false) {
       try {
@@ -42,14 +36,14 @@ shimmer.wrap(Agent, 'start', function(startAgent) {
 
             Object.entries({
               methods: () => instrumentMethods(Agent, Meteor),
-              session: () => instrumentSession(Agent, Session),
+              session: () => instrumentSession(Agent, Session, Meteor),
               subscription: () => instrumentSubscription(Agent, Subscription),
               async: () => instrumentAsync(Agent, Fibers),
               db: () => {
                 hackDB();
                 instrumentDB(Agent, Meteor, MongoCursor);
               },
-              metrics: () => startMetrics(Agent)
+              metrics: () => startMetrics(Agent, Meteor)
             }).forEach(([name, fn]) => {
               if (!disabled.has(name)) {
                 fn();

@@ -29,7 +29,7 @@ function getSession() {
 const session = getSession();
 export const Session = session.constructor;
 
-const collection = new Mongo.Collection(`__dummy_coll_${Random.id()}`);
+const collection = new Mongo.Collection(`__dummy_coll_${Math.random(99999999999999999)}`);
 collection.findOne();
 const cursor = collection.find();
 export const MongoCursor = cursor.constructor;
@@ -47,7 +47,7 @@ export const Multiplexer = getMultiplexer(cursor).constructor;
 export const MongoConnection = MongoInternals.defaultRemoteCollectionDriver().mongo.constructor;
 
 function getSubscription(subSession) {
-  const subId = Random.id();
+  const subId = Math.random(99999999999999999).toString();
 
   subSession._startSubscription(
     function() {
@@ -55,7 +55,7 @@ function getSubscription(subSession) {
     },
     subId,
     [],
-    `__dummy_pub_${Random.id()}`
+    `__dummy_pub_${Math.random(99999999999999999)}`
   );
 
   const subscription =

@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 Package.describe({
   name: '@tdc/meteor-elastic-apm',
-  version: '1.0.0',
+  version: '1.0.13',
   // Brief, one-line summary of the package.
   summary: 'Performance monitoring for Meteor based on Elastic APM',
   // URL to the Git repository containing the source code for this package.
@@ -12,14 +12,14 @@ Package.describe({
 });
 
 Npm.depends({
-  'elastic-apm-node': '3.27.0',
+  'elastic-apm-node': '^3.27.0',
   shimmer: '1.2.1'
 });
 
 Package.onUse(function(api) {
   api.versionsFrom('2.4');
 
-  api.use('thedreamcorporation:meteor-measured@1.0.3');
+  api.use('thedreamcorporation:meteor-measured@1.0.0');
   api.imply('thedreamcorporation:meteor-measured');
 
   api.use([
